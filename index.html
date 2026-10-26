@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Construction | Build Your Dream</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+  --yellow: #fdbb00;
+  --dark: #222222;
+  --muted: #999999;
+  --light: #f9f8ff;
+  --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:80px; }
+body {
+  font-family:'Poppins',sans-serif;
+  color:var(--dark);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+a { text-decoration:none; color:inherit; }
+img { display:block; width:100%; object-fit:cover; }
+button,input,textarea { font:inherit; }
+.container { width:min(1180px,90%); margin:auto; }
+section { padding:100px 0; }
+.section-title {
+  text-align:center;
+  font-size:clamp(30px,5vw,56px);
+  font-weight:700;
+  line-height:1.2;
+  margin-bottom:25px;
+}
+.section-subtitle {
+  color:var(--muted);
+  text-align:center;
+  font-size:18px;
+  margin-bottom:75px;
+}
+
+/* HEADER */
+header {
+  position:fixed;
+  inset:0 0 auto;
+  z-index:1000;
+  background:rgba(35,35,35,.92);
+  transition:.3s;
+}
+.navbar {
+  height:100px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  color:#fff;
+  font-size:34px;
+  font-weight:700;
+}
+.brand-icon {
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  font-size:43px;
+  transform:rotate(45deg);
+}
+.menu-button {
+  background:none;
+  color:white;
+  border:0;
+  font-size:32px;
+  cursor:pointer;
+}
+.nav-links {
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  width:100%;
+  padding:25px 5%;
+  background:#252525;
+  color:white;
+}
+.nav-links.open { display:block; }
+.nav-links a {
+  display:block;
+  padding:12px 0;
+  border-bottom:1px solid #444;
+}
+.nav-links a:hover { color:var(--yellow); }
+
+/* HERO */
+.hero {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  padding:150px 20px 90px;
+  background:
+    linear-gradient(rgba(35,29,17,.68),rgba(35,29,17,.72)),
+    url('https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=2000&q=85')
+    center/cover no-repeat;
+}
+.hero-content { max-width:900px; }
+.hero-kicker {
+  font-size:clamp(16px,3vw,27px);
+  letter-spacing:6px;
+  font-weight:300;
+  line-height:1.6;
+  margin-bottom:45px;
+}
+.hero h1 {
+  font-size:clamp(48px,9vw,82px);
+  line-height:1.2;
+  font-weight:800;
+  margin-bottom:45px;
+}
+.hero p {
+  font-size:clamp(17px,2.8vw,29px);
+  font-weight:300;
+  margin-bottom:35px;
+}
+.btn {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  background:var(--yellow);
+  border:0;
+  border-radius:50px;
+  padding:19px 45px;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  transition:.25s;
+}
+.btn:hover {
+  background:#e9a900;
+  color:white;
+  transform:translateY(-3px);
+}
+
+/* SERVICES */
+.services-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:50px;
+}
+.service-item { padding:5px 0; }
+.service-item .service-icon {
+  font-size:60px;
+  color:var(--yellow);
+  margin-bottom:30px;
+}
+.service-item h3 { font-size:25px; margin-bottom:30px; }
+.service-item p { color:var(--muted); font-size:18px; }
+
+/* FEATURE CARDS */
+.features-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:30px;
+}
+.feature-card {
+  text-align:center;
+  background:var(--light);
+  padding:35px;
+  transition:.3s;
+}
+.feature-card:hover {
+  background:var(--yellow);
+  transform:translateY(-5px);
+  box-shadow:0 20px 30px #0001;
+}
+.feature-card img {
+  height:290px;
+  margin-bottom:28px;
+}
+.feature-card h3 { font-size:25px; margin-bottom:25px; }
+.feature-card p { color:#777; font-size:18px; }
+.feature-card:hover p { color:#383020; }
+
+/* BUILDING SLIDER */
+.building-slider {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:35px;
+  align-items:center;
+}
+.building-image {
+  height:600px;
+  overflow:hidden;
+}
+.building-image img { height:100%; }
+.slider-dots {
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  margin-top:50px;
+}
+.slider-dots button {
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  border:0;
+  background:#e9e9e9;
+  cursor:pointer;
+}
+.slider-dots button.active { background:var(--yellow); }
+
+/* COUNTERS */
+.stats {
+  background:var(--yellow);
+  padding:120px 0;
+}
+.stats-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:75px 40px;
+}
+.stat h3 {
+  font-size:clamp(40px,7vw,85px);
+  line-height:1.1;
+  font-weight:800;
+}
+.stat p { font-size:21px; margin-top:15px; }
+
+/* WHY US */
+.why-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+}
+.why-card {
+  background:var(--light);
+  padding:55px;
+  transition:.3s;
+}
+.why-card:hover {
+  background:var(--yellow);
+  box-shadow:0 20px 35px #0002;
+  transform:translateY(-4px);
+}
+.why-card h3 {
+  display:flex;
+  align-items:center;
+  gap:25px;
+  font-size:25px;
+  margin-bottom:30px;
+}
+.why-card h3 i { font-size:28px; font-weight:400; }
+.why-card p { color:var(--muted); font-size:18px; }
+.why-card:hover p { color:#393020; }
+
+/* TESTIMONIAL */
+.testimonials {
+  position:relative;
+  color:#fff;
+  background:
+    linear-gradient(#000c,#000c),
+    url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85')
+    center/cover fixed;
+  padding:120px 0;
+}
+.testimonial-box {
+  max-width:850px;
+  margin:auto;
+  text-align:center;
+}
+.testimonial-box .quote {
+  font-size:55px;
+  color:var(--yellow);
+}
+.testimonial-box p { font-size:22px; margin:20px 0; }
+.testimonial-box h3 { font-size:27px; }
+.testimonial-box small { color:#bbb; font-size:17px; }
+.slider-controls { margin-top:30px; }
+.slider-controls button {
+  background:white;
+  border:0;
+  padding:14px 22px;
+  cursor:pointer;
+  font-size:23px;
+}
+
+/* BLOG */
+.blog-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:30px;
+}
+.blog-card { background:var(--light); padding-bottom:30px; }
+.blog-card img { height:270px; }
+.blog-card .blog-content { padding:25px; }
+.blog-meta { color:var(--yellow); font-size:14px; margin-bottom:12px; }
+.blog-card h3 { font-size:24px; margin-bottom:15px; }
+.blog-card p { color:var(--muted); }
+.read-more {
+  display:inline-block;
+  margin-top:20px;
+  font-weight:600;
+}
+.read-more:hover { color:#d99f00; }
+
+/* LOGOS */
+.logo-section { background:var(--light); }
+.logo-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:60px 30px;
+  align-items:center;
+  text-align:center;
+}
+.logo-item {
+  color:#aaa;
+  font-size:25px;
+  font-weight:800;
+  line-height:1.3;
+}
+.logo-item small {
+  display:block;
+  font-size:10px;
+  letter-spacing:3px;
+}
+
+/* CONTACT */
+.contact-form {
+  max-width:850px;
+  margin:auto;
+}
+.form-field {
+  width:100%;
+  border:1px solid #d9d9d9;
+  background:#fff;
+  padding:22px 27px;
+  margin-bottom:30px;
+  outline:none;
+  color:#333;
+}
+.form-field:focus { border-color:var(--yellow); }
+textarea.form-field { height:250px; resize:vertical; }
+.form-message { margin-top:15px; color:#777; }
+
+/* FOOTER */
+footer {
+  background:#222;
+  color:white;
+  padding:100px 0 45px;
+}
+.footer-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:55px 35px;
+}
+.footer-col h3 { font-size:27px; margin-bottom:30px; }
+.footer-col p {
+  color:#858585;
+  font-size:17px;
+  margin-bottom:20px;
+}
+.footer-phone {
+  display:block;
+  color:var(--yellow);
+  font-size:clamp(23px,3vw,38px);
+  font-weight:700;
+  line-height:1.5;
+}
+.newsletter {
+  display:flex;
+  background:white;
+  border-radius:40px;
+  overflow:hidden;
+}
+.newsletter input {
+  min-width:0;
+  width:100%;
+  padding:18px 22px;
+  border:0;
+  outline:0;
+}
+.newsletter button {
+  background:var(--yellow);
+  border:0;
+  padding:0 28px;
+  font-size:23px;
+  cursor:pointer;
+}
+.copyright {
+  text-align:center;
+  color:#888;
+  border-top:1px solid #383838;
+  padding-top:35px;
+  margin-top:75px;
+}
+.copyright span { color:var(--yellow); }
+
+/* BACK TO TOP */
+.back-top {
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:45px;
+  height:45px;
+  display:none;
+  place-items:center;
+  border:0;
+  background:var(--yellow);
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+  z-index:900;
+}
+.back-top.visible { display:grid; }
+
+/* RESPONSIVE */
+@media (min-width:1000px) {
+  .navbar { height:100px; }
+  .building-slider { grid-template-columns:1fr; }
+}
+@media (max-width:768px) {
+  section { padding:80px 0; }
+  .container { width:90%; }
+  .navbar { height:105px; }
+  .brand { font-size:28px; gap:12px; }
+  .brand-icon { font-size:35px; width:38px; }
+  .hero { min-height:100svh; }
+  .hero-kicker { letter-spacing:4px; margin-bottom:45px; }
+  .hero h1 { margin-bottom:48px; }
+  .hero p { line-height:1.7; }
+  .section-subtitle { margin-bottom:65px; }
+  .services-grid { grid-template-columns:1fr; gap:65px; }
+  .features-grid { grid-template-columns:1fr; }
+  .feature-card { padding:35px 25px; }
+  .feature-card img { height:auto; aspect-ratio:1.55; }
+  .building-image { height:auto; aspect-ratio: .72; }
+  .stats { padding:150px 0; }
+  .stats-grid { gap:95px 25px; }
+  .stat p { font-size:18px; line-height:1.5; }
+  .why-grid { grid-template-columns:1fr; gap:60px; }
+  .why-card { padding:55px; }
+  .testimonials { background-attachment:scroll; }
+  .blog-grid { grid-template-columns:1fr; }
+  .blog-card img { height:auto; aspect-ratio:1.55; }
+  .logo-grid { grid-template-columns:1fr; gap:90px; }
+  .footer-grid { grid-template-columns:1fr; gap:50px; }
+}
+@media (max-width:380px) {
+  .brand { font-size:23px; }
+  .brand-icon { font-size:30px; width:32px; }
+  .menu-button { font-size:27px; }
+  .stats-grid { gap:75px 18px; }
+  .why-card { padding:35px 25px; }
+}
+</style>
+</head>
+
+<body>
+
+<header id="header">
+  <div class="container navbar">
+    <a class="brand" href="#home">
+      <span class="brand-icon">✥</span>
+      <span>Construction</span>
+    </a>
+    <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+  <nav class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#features">Features</a>
+    <a href="#about">About Us</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-kicker">DISCOVER THE COLORFUL<br>WORLD</div>
+      <h1>BUILD YOUR<br>DREAM</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor or incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+      <a href="#services" class="btn">DISCOVER NOW</a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container services-grid">
+      <article class="service-item">
+        <div class="service-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+        <h3>Building Drawings</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </article>
+      <article class="service-item">
+        <div class="service-icon"><i class="fa-solid fa-paint-roller"></i></div>
+        <h3>Building Drawings</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </article>
+      <article class="service-item">
+        <div class="service-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3>Building Drawings</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="container">
+      <h2 class="section-title">Some Features<br>that Made us<br>Unique</h2>
+      <p class="section-subtitle">Who are in extremely love with eco friendly system.</p>
+
+      <div class="features-grid">
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=85" alt="Construction team">
+          <h3>Basic &amp; Common Repairs</h3>
+          <p>Computer users and programmers have become so accustomed to using Windows, even for the changing capabilities and the appearances of the graphical.</p>
+        </article>
+
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=85" alt="Architectural drawing">
+          <h3>Brake Repairs &amp; Services</h3>
+          <p>Computer users and programmers have become so accustomed to using Windows, even for the changing capabilities and the appearances of the graphical.</p>
+        </article>
+
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1000&q=85" alt="Building construction">
+          <h3>Preventive Maintenance</h3>
+          <p>Computer users and programmers have become so accustomed to using Windows, even for the changing capabilities and the appearances of the graphical.</p>
+        </article>
+
+        <article class="feature-card">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=85" alt="Modern building">
+          <h3>Quality Construction</h3>
+          <p>Computer users and programmers have become so accustomed to using Windows, even for the changing capabilities and the appearances of the graphical.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US / IMAGE SLIDER -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">Why Choose Us<br>Your Fitness<br>Builder</h2>
+      <p class="section-subtitle">Who are in extremely love with eco friendly system.</p>
+
+      <div class="building-slider">
+        <div class="building-image">
+          <img id="buildingImage"
+               src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85"
+               alt="Featured building project">
+        </div>
+      </div>
+      <div class="slider-dots" id="buildingDots" aria-label="Choose building image"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container stats-grid">
+      <article class="stat">
+        <h3 data-target="2536">0</h3>
+        <p>Projects Completed</p>
+      </article>
+      <article class="stat">
+        <h3 data-target="6784">0</h3>
+        <p>Really Happy Clients</p>
+      </article>
+      <article class="stat">
+        <h3 data-target="1059">0</h3>
+        <p>Total Tasks Completed</p>
+      </article>
+      <article class="stat">
+        <h3 data-target="2239">0</h3>
+        <p>Cups of Coffee Taken</p>
+      </article>
+      <article class="stat">
+        <h3 data-target="434">0</h3>
+        <p>In House Professionals</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- WHY WE ARE THE BEST -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Why we are the<br>best</h2>
+      <p class="section-subtitle">Who are in extremely love with eco friendly system.</p>
+
+      <div class="why-grid">
+        <article class="why-card">
+          <h3><i class="fa-regular fa-user"></i> Expert Technicians</h3>
+          <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+        </article>
+        <article class="why-card">
+          <h3><i class="fa-regular fa-id-card"></i> Professional Service</h3>
+          <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+        </article>
+        <article class="why-card">
+          <h3><i class="fa-solid fa-headset"></i> Great Support</h3>
+          <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+        </article>
+        <article class="why-card">
+          <h3><i class="fa-solid fa-rocket"></i> Technical Skills</h3>
+          <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+        </article>
+        <article class="why-card">
+          <h3><i class="fa-regular fa-gem"></i> Highly Recommended</h3>
+          <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+        </article>
+        <article class="why-card">
+          <h3><i class="fa-regular fa-comment"></i> Positive Reviews</h3>
+          <p>Usage of the Internet is becoming more common due to rapid advancement of technology and power.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonials">
+    <div class="container testimonial-box">
+      <div class="quote"><i class="fa-solid fa-quote-left"></i></div>
+      <p id="testimonialText">Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware.</p>
+      <h3 id="testimonialName">Mark Alviro Wiens</h3>
+      <small id="testimonialRole">CEO at Google</small>
+      <div class="slider-controls">
+        <button id="prevTestimonial" aria-label="Previous testimonial"><i class="fa-solid fa-arrow-up"></i></button>
+        <button id="nextTestimonial" aria-label="Next testimonial"><i class="fa-solid fa-arrow-down"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="container">
+      <h2 class="section-title">Latest From Blog</h2>
+      <p class="section-subtitle">Who are in extremely love with eco friendly system.</p>
+      <div class="blog-grid">
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=85" alt="Construction work">
+          <div class="blog-content">
+            <div class="blog-meta">10 Jan 2026 &nbsp; | &nbsp; By Admin</div>
+            <h3>Building the future with modern construction</h3>
+            <p>Explore new ideas, thoughtful designs and quality solutions for your next building project.</p>
+            <a class="read-more" href="#contact">Read More →</a>
+          </div>
+        </article>
+        <article class="blog-card">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=85" alt="Architecture">
+          <div class="blog-content">
+            <div class="blog-meta">15 Jan 2026 &nbsp; | &nbsp; By Admin</div>
+            <h3>Creative architecture and better spaces</h3>
+            <p>Learn how planning, skilled workmanship and great materials can transform a building.</p>
+            <a class="read-more" href="#contact">Read More →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGO SHOWCASE -->
+  <section class="logo-section">
+    <div class="container logo-grid">
+      <div class="logo-item"><small>✦ ✦ ✦</small>CREATIVE<small>— LOREM IPSUM —</small></div>
+      <div class="logo-item"><small>♛ HIGH QUALITY</small>PREMIUM LABELS<small>— CREATIVE PASSION —</small></div>
+      <div class="logo-item"><small>VINTAGE PREMIUM</small>premium labels<small>✦ ✦ ✦</small></div>
+      <div class="logo-item"><small>THE CREATIVE DESIGNS</small>PREMIUM LABELS<small>+ PREMIUM LABELS +</small></div>
+      <div class="logo-item"><small>▲</small>PREMIUM<small>QUALITY CONSTRUCTION</small></div>
+      <div class="logo-item"><small>✧ DESIGN ✧</small>BUILDERS<small>MADE WITH CARE</small></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">If you need, Just<br>drop us a line</h2>
+      <p class="section-subtitle">Who are in extremely love with eco friendly system.</p>
+
+      <form class="contact-form" id="contactForm">
+        <input class="form-field" type="text" name="name" placeholder="Enter your name" required>
+        <input class="form-field" type="email" name="email" placeholder="Enter email address" required>
+        <input class="form-field" type="text" name="subject" placeholder="Enter your subject" required>
+        <textarea class="form-field" name="message" placeholder="Message" required></textarea>
+        <button type="submit" class="btn">SEND MESSAGE <i class="fa-solid fa-arrow-right"></i></button>
+        <p class="form-message" id="contactMessage" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>About Us</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Contact Us</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.</p>
+        <a href="tel:01265325689746" class="footer-phone">012-6532-568-9746</a>
+        <a href="tel:01265325689748" class="footer-phone">012-6532-569-9748</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <p>You can trust us. We only send offers, not a single spam.</p>
+        <form class="newsletter" id="newsletterForm">
+          <input type="email" placeholder="Email address" required aria-label="Email address">
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+        <p id="newsletterMessage" class="form-message" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="copyright">
+      Copyright &copy; <span id="year"></span> All rights reserved | Made with <span>♥</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+// MOBILE NAVIGATION
+const menuButton = document.getElementById('menuButton');
+const navLinks = document.getElementById('navLinks');
+
+menuButton.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  menuButton.setAttribute('aria-expanded', open);
+  menuButton.innerHTML = open
+    ? '<i class="fa-solid fa-xmark"></i>'
+    : '<i class="fa-solid fa-bars"></i>';
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  });
+});
+
+// STICKY HEADER AND BACK TO TOP
+const header = document.getElementById('header');
+const backTop = document.getElementById('backTop');
+
+window.addEventListener('scroll', () => {
+  header.style.background = window.scrollY > 40
+    ? 'rgba(35,35,35,.98)'
+    : 'rgba(35,35,35,.92)';
+  backTop.classList.toggle('visible', window.scrollY > 400);
+});
+
+backTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// BUILDING IMAGE SLIDER
+const buildingImages = [
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=85',
+  'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1400&q=85',
+  'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=85',
+  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=85',
+  'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=85',
+  'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1400&q=85',
+  'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=85'
+];
+
+const buildingImage = document.getElementById('buildingImage');
+const buildingDots = document.getElementById('buildingDots');
+let currentBuilding = 0;
+
+buildingImages.forEach((src, index) => {
+  const dot = document.createElement('button');
+  dot.setAttribute('aria-label', 'Show building image ' + (index + 1));
+  dot.addEventListener('click', () => showBuilding(index));
+  buildingDots.appendChild(dot);
+});
+
+function showBuilding(index) {
+  currentBuilding = index;
+  buildingImage.src = buildingImages[index];
+  [...buildingDots.children].forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+}
+showBuilding(0);
+
+// ANIMATED STATISTICS
+const counters = document.querySelectorAll('[data-target]');
+let countersStarted = false;
+
+function startCounters() {
+  if (countersStarted) return;
+  countersStarted = true;
+
+  counters.forEach(counter => {
+    const target = Number(counter.dataset.target);
+    const duration = 1600;
+    const start = performance.now();
+
+    function update(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      counter.textContent = Math.round(target * eased);
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+const statsSection = document.querySelector('.stats');
+if ('IntersectionObserver' in window) {
+  const statsObserver = new IntersectionObserver(entries => {
+    if (entries.some(entry => entry.isIntersecting)) {
+      startCounters();
+      statsObserver.disconnect();
+    }
+  }, { threshold: 0.2 });
+  statsObserver.observe(statsSection);
+} else {
+  startCounters();
+}
+
+// TESTIMONIAL SLIDER
+const testimonials = [
+  {
+    text: 'Accessories Here you can find the best computer accessory for your laptop, monitor, printer, scanner, speaker, projector, hardware.',
+    name: 'Mark Alviro Wiens',
+    role: 'CEO at Google'
+  },
+  {
+    text: 'Professional service, thoughtful planning and attention to detail make a real difference in every construction project.',
+    name: 'Alex Morgan',
+    role: 'Project Manager'
+  },
+  {
+    text: 'A great team, reliable workmanship and a commitment to quality from the first drawing to the final result.',
+    name: 'Sarah Johnson',
+    role: 'Happy Client'
+  }
+];
+
+let testimonialIndex = 0;
+
+function showTestimonial(index) {
+  testimonialIndex = (index + testimonials.length) % testimonials.length;
+  const item = testimonials[testimonialIndex];
+  document.getElementById('testimonialText').textContent = item.text;
+  document.getElementById('testimonialName').textContent = item.name;
+  document.getElementById('testimonialRole').textContent = item.role;
+}
+
+document.getElementById('prevTestimonial').addEventListener('click', () => {
+  showTestimonial(testimonialIndex - 1);
+});
+document.getElementById('nextTestimonial').addEventListener('click', () => {
+  showTestimonial(testimonialIndex + 1);
+});
+
+// CONTACT FORM DEMO
+document.getElementById('contactForm').addEventListener('submit', event => {
+  event.preventDefault();
+  document.getElementById('contactMessage').textContent =
+    'Your form is valid. Connect a backend or form service to send this message.';
+});
+
+// NEWSLETTER DEMO
+document.getElementById('newsletterForm').addEventListener('submit', event => {
+  event.preventDefault();
+  document.getElementById('newsletterMessage').textContent =
+    'Email entered successfully. Connect a newsletter service to save subscribers.';
+  event.target.reset();
+});
+
+// CURRENT YEAR
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
